@@ -1,0 +1,130 @@
+basePath: /api/v1
+definitions:
+  models.Movie:
+    properties:
+      director:
+        type: string
+      id:
+        type: integer
+      title:
+        type: string
+      year:
+        type: integer
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a sample server movie server.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Movies Example API
+  version: "1.0"
+paths:
+  /movies:
+    get:
+      consumes:
+      - application/json
+      description: get all movies
+      operationId: get-all-movies
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Movie'
+      summary: Get All Movies
+      tags:
+      - movies
+    post:
+      description: add new movie
+      operationId: add-movie
+      parameters:
+      - description: movie data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.Movie'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Movie'
+      summary: Add New Movie
+      tags:
+      - movies
+  /movies/{id}:
+    delete:
+      description: Delete a movie
+      operationId: delete-movie-by-id
+      parameters:
+      - description: movie ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Movie'
+      summary: Delete a movie
+      tags:
+      - movies
+    get:
+      description: get a movie by ID
+      operationId: get-movie-by-id
+      parameters:
+      - description: movie ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Movie'
+      summary: get a movie by ID
+      tags:
+      - movies
+    put:
+      consumes:
+      - application/json
+      description: Update a movie
+      operationId: update-movie-by-id
+      parameters:
+      - description: Movie ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Update movie
+        in: body
+        name: account
+        required: true
+        schema:
+          $ref: '#/definitions/models.Movie'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Movie'
+      summary: Update a movie
+      tags:
+      - movies
+swagger: "2.0"
