@@ -6,6 +6,7 @@ import (
     "fmt"
     "log"
     "github.com/gin-gonic/gin"
+    "github.com/gin-contrib/cors"
     "github.com/swaggo/gin-swagger"
     "github.com/swaggo/files"
     _ "github.com/yutanov/movies_api/docs"
@@ -31,6 +32,8 @@ func main() {
     checkErr(err)
 
     r := gin.Default()
+    r.Use(cors.Default())
+
     v1 := r.Group("/api/v1")
     {
       v1.GET("/movies", getAllMovies)
